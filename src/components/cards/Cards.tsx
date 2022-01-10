@@ -9,9 +9,11 @@ type Data = Array<{
 
 const Cards = () => {
     const [data, setData] = useState<Data>([]);
-    const [searchTerm, setSearchTerm] = useState('');
     const [selectedCard, setSelectedCard] = useState<string>('');
     const [pageSize, setPageSize] = useState<number>(12);
+    const [totalPages, setTotalPages] = useState<number>();
+    const [pageCount, setPageCount] = useState<Array<number>>();
+    const [currentPage, setCurrentPage] = useState<number>(1);
 
     // Command list
     //characters - Iegūs pilno sarakstu ar datiem
@@ -23,28 +25,44 @@ const Cards = () => {
 
     useEffect(() => {
         // Fetch data
-        fetch(`http://localhost:5555/characters?_page=1&_limit=${pageSize}`)
+        fetch(`http://localhost:5555/characters?_page=${currentPage}&_limit=${pageSize}`)
             .then((res) => res.json())
             .then((json) => {
                 setData(json);
             });
-    }, [pageSize]);
 
-    const searchResults = () => {
-        if (searchTerm !== '') {
-            fetch(`http://localhost:5555/characters?name_like=${searchTerm}`)
+        fetch(`http://localhost:5555/characters`)
+            .then((res) => res.json())
+            .then((json) => {
+                setTotalPages(json.length);
+            });
+    }, [pageSize, currentPage]);
+
+    const searchResults = (term: any) => {
+        if (term !== '') {
+            fetch(`http://localhost:5555/characters?name_like=${term}`)
                 .then((res) => res.json())
                 .then((json) => {
                     setData(json);
                 });
         } else {
-            fetch('http://localhost:5555/characters')
+            fetch(`http://localhost:5555/characters?_page=${currentPage}&_limit=${pageSize}`)
                 .then((res) => res.json())
                 .then((json) => {
                     setData(json);
                 });
         }
     };
+
+    useEffect(() => {
+        const pages = [];
+        if (totalPages) {
+            for (let index = 1; index < totalPages / pageSize; index++) {
+                pages.push(index);
+            }
+            setPageCount(pages);
+        }
+    }, [totalPages, pageSize]);
 
     return (
         <div className={styles.root}>
@@ -54,23 +72,18 @@ const Cards = () => {
                     type="text"
                     placeholder="Search for colleague"
                     onChange={(e) => {
-                        setSearchTerm(e.currentTarget.value);
-                        console.log(searchTerm);
-                        searchResults();
+                        searchResults(e.currentTarget.value);
                     }}
-                    value={searchTerm}
                 />
             </div>
-            <select name="pageSizes" id="pageSizes" onChange={(e) => setPageSize(Number(e.currentTarget.value))}>
+            <select name="pageSizes" defaultValue="12" id="pageSizes" onChange={(e) => setPageSize(Number(e.currentTarget.value))}>
                 <option value="6">6</option>
-                <option value="12" selected={true}>
-                    12
-                </option>
+                <option value="12">12</option>
                 <option value="18">18</option>
                 <option value="24">24</option>
                 <option value="30">30</option>
-                <option value="36">30</option>
-                <option value="42">30</option>
+                <option value="36">36</option>
+                <option value="42">42</option>
                 <option value="48">48</option>
             </select>
             <div>
@@ -86,7 +99,16 @@ const Cards = () => {
                     })}
             </div>
             <div>
-                <p>1 2 3 4 5</p>
+                {pageCount
+                    ? pageCount.map((page) => {
+                          return (
+                              <button key={page} onClick={() => setCurrentPage(page)}>
+                                  {' '}
+                                  {page}{' '}
+                              </button>
+                          );
+                      })
+                    : 'Loading...'}
             </div>
         </div>
     );
