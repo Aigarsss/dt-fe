@@ -1,0 +1,42 @@
+.root {
+    display: flex;
+
+    span,
+    .number {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 32px;
+        height: 32px;
+        cursor: pointer;
+    }
+
+    .number {
+        color: #5C6369;
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    .selected {
+        font-weight: 700;
+        color: #333C43;
+    }
+
+    .chevron {
+        svg {
+            path {
+                fill: #333C43;
+            }
+        }
+    }
+
+    .chevronDisabled {
+        svg {
+            path {
+                fill: #BCBCBC
+                ;
+            }
+        }
+    }
+
+}

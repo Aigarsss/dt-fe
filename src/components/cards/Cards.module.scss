@@ -1,3 +1,24 @@
 .root {
     color: white;
+
+    .cardsContainer {
+        width: 768px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 32px;
+        margin: auto;
+        justify-content: center;
+    }
+
+    .searchContainer {
+        margin: 32px auto 24px;
+    }
+
+    .paginationContainer {
+        margin-top: 35px;
+        padding-bottom: 35px;   
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }

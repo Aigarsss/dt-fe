@@ -1,0 +1,37 @@
+.root {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 448px;
+    margin: auto;
+
+    &::before {
+        content: '';
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        top: 13px;
+        left: 13px;
+        background-image: url('../../../public/images/search.svg');
+        background-repeat: no-repeat;
+        z-index: 2;
+    }
+
+    .search {
+        width: 448px;
+        height: 40px;
+        background: #FFFFFF;
+        border: 1px solid #999DA1;
+        border-radius: 2px;
+
+        outline: none;
+        position: relative;
+        padding-left: 36px;
+    
+        &::placeholder {
+            color: #70777B;
+            font-size: 16px;
+        }
+    }
+}
