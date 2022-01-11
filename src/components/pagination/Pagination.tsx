@@ -16,6 +16,9 @@ const Pagination: React.FC = () => {
             } }>
                 <Left />
             </span>
+            <span className={styles.number}>
+                ...
+            </span>
             {pageCount &&
                 pageCount
                     .filter((page) => page === 1 || page === pageCount[pageCount.length - 1] || (page <= currentPage + 2 && page >= currentPage - 2))
@@ -30,6 +33,9 @@ const Pagination: React.FC = () => {
                             </span>
                         );
             })}
+            <span className={styles.number}>
+                ...
+            </span>
             <span className={classNames(styles.chevron,{[styles.chevronDisabled]: currentPage === pageCount[pageCount.length - 1]})} onClick={() => {
                 if (currentPage < pageCount[pageCount.length - 1]) {
                     setCurrentPage(prevPage => prevPage + 1)

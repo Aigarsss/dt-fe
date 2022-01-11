@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { useAppContext } from '../../../context/context';
 import styles from './Card.module.scss';
 
@@ -7,10 +8,10 @@ type CardProps = {
 
 const Card: React.FC<CardProps> = ({ item }) => {
     const { name, url } = item;
-    const { setSelectedName } = useAppContext();
+    const { setSelectedName, selectedName } = useAppContext();
 
     return (
-        <div className={styles.root} onClick={() => setSelectedName(name)}>
+        <div className={classNames(styles.root, { [styles.selected]: name === selectedName })} onClick={() => setSelectedName(name)}>
             <img src={url} alt={name} />
             <span className={styles.name}>{name}</span>
         </div>

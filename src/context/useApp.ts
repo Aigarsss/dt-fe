@@ -17,7 +17,7 @@ export type UseApp = {
         id: number;
         url: string;
     }>;
-    name: string;
+    selectedName: string;
     setSelectedName: Dispatch<SetStateAction<string>>;
     pageSize: number;
     setPageSize: Dispatch<SetStateAction<number>>;
@@ -28,6 +28,8 @@ export type UseApp = {
     setTotalItems: Dispatch<SetStateAction<number>>;
     pageCount: number[];
     setPageCount: Dispatch<SetStateAction<number[]>>;
+    darkMode: boolean;
+    setDarkMode: Dispatch<SetStateAction<boolean>>;
 };
 
 export const useApp = (): UseApp => {
@@ -37,6 +39,7 @@ export const useApp = (): UseApp => {
     const [currentPage, setCurrentPage] = useState<number>(1); // Sets/Gets current page
     const [totalItems, setTotalItems] = useState<number>(0); // Sets/Gets total available characters TODO
     const [pageCount, setPageCount] = useState<Array<number>>([0]); // Set/Get available pages for pagination
+    const [darkMode, setDarkMode] = useState(false);
 
     useEffect(() => {
         const pages = [];
@@ -83,8 +86,8 @@ export const useApp = (): UseApp => {
     };
 
     return {
-        data: data,
-        name: selectedName,
+        data,
+        selectedName,
         setSelectedName,
         pageSize,
         setPageSize,
@@ -94,6 +97,8 @@ export const useApp = (): UseApp => {
         totalItems,
         setTotalItems,
         pageCount,
-        setPageCount
+        setPageCount,
+        darkMode,
+        setDarkMode
     };
 };

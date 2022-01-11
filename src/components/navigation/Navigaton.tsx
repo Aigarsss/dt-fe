@@ -1,22 +1,24 @@
 import styles from './Navigation.module.scss';
 import classNames from 'classnames';
 import { useAppContext } from '../../context/context';
+import { ReactComponent as Moon } from './static/moon.svg';
+import { ReactComponent as Sun } from './static/sun.svg';
+import { ReactComponent as LogoLight } from './static/logoLight.svg';
+import { ReactComponent as LogoDark } from './static/logoDark.svg';
 
 const Navigation: React.FC = () => {
-    const { name, setPageSize } = useAppContext();
+    const { selectedName, setPageSize, darkMode, setDarkMode } = useAppContext();
 
     return (
-        <nav className={styles.root}>
-            <a href="/">
-                <img src="/images/logo.svg" alt="logo" />
-            </a>
-            <div className={styles.name}>{name}</div>
+        <nav className={classNames(styles.root, { [styles.darkMode]: darkMode })}>
+            <a href="/">{darkMode ? <LogoDark /> : <LogoLight />}</a>
+            <div className={styles.name}>{selectedName}</div>
             <div className={styles.switchers}>
-                <span className={classNames(styles.switcherItem, styles.switcherItemSelected)}>
-                    <img src="/images/sun.svg" alt="light-mode" />
+                <span className={classNames(styles.switcherItem, { [styles.switcherItemSelected]: !darkMode })} onClick={() => setDarkMode(false)}>
+                    <Sun />
                 </span>
-                <span className={styles.switcherItem}>
-                    <img src="/images/moon.svg" alt="dark-mode" />
+                <span className={classNames(styles.switcherItem, { [styles.switcherItemSelected]: darkMode })} onClick={() => setDarkMode(true)}>
+                    <Moon />
                 </span>
                 <select
                     name="pageSizes"
