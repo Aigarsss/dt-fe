@@ -1,0 +1,28 @@
+.root {
+    position: relative;
+    width: 72px;
+
+    select {
+        width: 100%;
+        padding: 8px 12px;
+        outline: none;
+        border: 1px solid #999DA1;
+        border-radius: 2px;
+    }
+
+    .customArrow {
+        position: absolute;
+        top: 1px;
+        right: 1px;
+        width: 20px;
+        height: 34px;
+        background-color: #ffffff;
+        pointer-events: none;
+
+        svg {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%)
+        }
+    }
+}

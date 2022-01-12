@@ -19,12 +19,13 @@ module.exports = {
     },
     "plugins": [
         "react",
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "react-hooks"
     ],
     "rules": {
         "react/react-in-jsx-scope": "off",
         "prettier/prettier": 0,
-        "react-hooks/rules-of-hooks": "warn", // Checks rules of Hooks
+        "react-hooks/rules-of-hooks": "warn", 
         "react-hooks/exhaustive-deps": "warn",
         "react/prop-types": "off"
     }
