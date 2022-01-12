@@ -1,6 +1,7 @@
 .root {
     color: #ffffff;
     flex-grow: 1;
+    background-color: #EBECEC;
 
     .cardsContainer {
         width: 768px;
@@ -18,7 +19,7 @@
     }
 
     .paginationContainer {
-        margin-top: 35px;
+        margin-top: 24px;
         padding-bottom: 35px;   
         display: flex;
         justify-content: center;
