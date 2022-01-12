@@ -3,14 +3,6 @@ import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 const BASE_LINK = 'http://localhost:5555/characters';
 
-// Command list
-//characters - Iegūs pilno sarakstu ar datiem
-//characters/1 - Iegūs no saraksta ierakstu ar ID: 1
-//characters?_page=7 - Iegūs ierakstus no 7. lapas (Default ierakstu skaits - 10)
-//characters?_page=7&_limit=20 - Iegūs 20 ierakstus no 7. lapas
-//characters?q=homer - Iegūs visus ierakstus kur name vai url saturēs vārdu 'homer'
-//characters?name_like=homer - Iegūs visus ierakstus kur name satur vārdu 'homer'
-
 export type UseApp = {
     data: Array<{
         name: string;
@@ -34,13 +26,12 @@ export type UseApp = {
 
 export const useApp = (): UseApp => {
     const [data, setData] = useState([]); // Data from API
-    const [selectedName, setSelectedName] = useState('Click a name'); // Sets/Gets the name on top of the page
+    const [selectedName, setSelectedName] = useState('Click a card'); // Sets/Gets the name on top of the page
     const [pageSize, setPageSize] = useState<number>(12); // Sets/Gets page size, how many items to display
     const [currentPage, setCurrentPage] = useState<number>(1); // Sets/Gets current page
     const [totalItems, setTotalItems] = useState<number>(0); // Sets/Gets total available characters TODO
     const [pageCount, setPageCount] = useState<Array<number>>([0]); // Set/Get available pages for pagination
     const [darkMode, setDarkMode] = useState(false);
-
 
     // Get total pages array for pagination
     useEffect(() => {
@@ -67,8 +58,6 @@ export const useApp = (): UseApp => {
     // Re-fetch API data on page size/current page changes
     useEffect(() => {
         fetchData(`?_page=${currentPage}&_limit=${pageSize}`);
-        setData(data);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [pageSize, currentPage]);
 
     // Get total available items from API
@@ -92,18 +81,18 @@ export const useApp = (): UseApp => {
 
     // Dark mode stuff
     useEffect(() => {
-        const darkModeSet = "darkMode" in localStorage;
-        const storageData = localStorage.getItem("darkMode");
+        const darkModeSet = 'darkMode' in localStorage;
+        const storageData = localStorage.getItem('darkMode');
         const storageValue = storageData && JSON.parse(storageData);
 
         // Dark/Light depending on storage
         if (darkModeSet) {
             setDarkMode(storageValue);
-        // Light mode
+            // Light mode
         } else {
             setDarkMode(false);
         }
-    }, [darkMode])
+    }, [darkMode]);
 
     return {
         data,

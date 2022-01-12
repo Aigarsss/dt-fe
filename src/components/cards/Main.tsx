@@ -1,11 +1,12 @@
 import classNames from 'classnames';
-import { useAppContext } from '../../context/context';
-import Pagination from '../pagination';
-import Search from '../search';
+import React from 'react';
+import { useAppContext } from 'context/context';
+import Pagination from 'components/pagination';
+import Search from 'components/search';
 import Card from './card';
-import styles from './Cards.module.scss';
+import styles from './Main.module.scss';
 
-const Cards = () => {
+const Main: React.FC = () => {
     const { data, darkMode } = useAppContext();
 
     return (
@@ -27,4 +28,4 @@ const Cards = () => {
     );
 };
 
-export default Cards;
+export default Main;

@@ -1,6 +1,6 @@
 import styles from './Navigation.module.scss';
 import classNames from 'classnames';
-import { useAppContext } from '../../context/context';
+import { useAppContext } from 'context/context';
 import { ReactComponent as Moon } from './static/moon.svg';
 import { ReactComponent as Sun } from './static/sun.svg';
 import { ReactComponent as LogoLight } from './static/logoLight.svg';
@@ -15,20 +15,20 @@ const Navigation: React.FC = () => {
             <a href="/">{darkMode ? <LogoDark /> : <LogoLight />}</a>
             <div className={styles.name}>{selectedName}</div>
             <div className={styles.switchers}>
-                <span 
-                    className={classNames(styles.switcherItem, { [styles.switcherItemSelected]: !darkMode })} 
+                <span
+                    className={classNames(styles.switcherItem, { [styles.switcherItemSelected]: !darkMode })}
                     onClick={() => {
                         setDarkMode(false);
-                        localStorage.setItem("darkMode", 'false');
+                        localStorage.setItem('darkMode', 'false');
                     }}
                 >
                     <Sun />
                 </span>
-                <span 
-                    className={classNames(styles.switcherItem, { [styles.switcherItemSelected]: darkMode })} 
+                <span
+                    className={classNames(styles.switcherItem, { [styles.switcherItemSelected]: darkMode })}
                     onClick={() => {
                         setDarkMode(true);
-                        localStorage.setItem("darkMode", 'true');
+                        localStorage.setItem('darkMode', 'true');
                     }}
                 >
                     <Moon />

@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { useAppContext } from '../../context/context';
+import { useAppContext } from 'context/context';
 import styles from './Pagination.module.scss';
 import { ReactComponent as Left } from './static/left.svg';
 import { ReactComponent as Right } from './static/right.svg';
@@ -8,7 +8,7 @@ const Pagination: React.FC = () => {
     const { setCurrentPage, pageCount, currentPage, darkMode } = useAppContext();
 
     return (
-        <div className={classNames(styles.root, {[styles.darkMode]: darkMode})}>
+        <div className={classNames(styles.root, { [styles.darkMode]: darkMode })}>
             {/* Left arrow */}
             <span
                 className={classNames(styles.chevron, { [styles.chevronDisabled]: currentPage === 1 })}

@@ -1,4 +1,4 @@
-import { useAppContext } from '../../context/context';
+import { useAppContext } from 'context/context';
 import styles from './Search.module.scss';
 
 const Search: React.FC = () => {

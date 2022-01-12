@@ -1,4 +1,4 @@
-import { useAppContext } from '../../../context/context';
+import { useAppContext } from 'context/context';
 import styles from './Dropdown.module.scss';
 import { ReactComponent as ArrowDown } from './static/downArrow.svg';
 

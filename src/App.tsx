@@ -1,10 +1,9 @@
-import React from 'react';
 import './App.scss';
 import Cards from './components/cards';
 import Navigation from './components/navigation';
 import AppContextProvider from './context/context';
 
-function App() {
+const App: React.FC = () => {
     return (
         <div className="App">
             <AppContextProvider>
@@ -13,6 +12,6 @@ function App() {
             </AppContextProvider>
         </div>
     );
-}
+};
 
 export default App;
