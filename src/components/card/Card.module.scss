@@ -11,6 +11,12 @@
     transition: 0.3s ease;
     box-shadow: inset 0 -3px #5C6369;
 
+    @media (max-width: 850px) {
+        & {
+            margin: auto;
+        }
+    }
+
     &:hover {
         box-shadow: inset 0 -3px #4EA819, 0px 4px 12px rgba(0, 0, 0, 0.12);
 

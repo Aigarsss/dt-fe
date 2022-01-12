@@ -10,6 +10,14 @@
         grid-gap: 32px;
         margin: auto;
         justify-content: center;
+
+        @media (max-width: 850px) {
+            & {
+                width: 90%;
+                grid-template-columns: 1fr;
+                grid-gap: 15px;
+            }
+        }
     }
 
     .searchContainer {
@@ -39,8 +47,15 @@
         width: 300px;
         margin: auto;
 
+        @media (max-width: 850px) {
+            & {
+                width: 150px;
+            }
+        }
+
         img {
             border-radius: 50%;
+            width: 100px;
         }
 
         p {
