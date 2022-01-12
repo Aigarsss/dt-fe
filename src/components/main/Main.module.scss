@@ -1,0 +1,61 @@
+.root {
+    color: #ffffff;
+
+    .cardsContainer {
+        width: 768px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 32px;
+        margin: auto;
+        justify-content: center;
+    }
+
+    .searchContainer {
+        margin: 0 auto;
+        padding-top: 32px;
+        padding-bottom: 24px;;
+    }
+
+    .paginationContainer {
+        margin-top: 35px;
+        padding-bottom: 35px;   
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .noResults {
+        position: relative;
+        animation-name: spin;
+        animation-duration: 15000ms;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear; 
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 300px;
+        margin: auto;
+
+        img {
+            border-radius: 50%;
+        }
+
+        p {
+            color: #4EA819;
+        }
+    }
+}
+
+.darkMode {
+    background-color: #262C30;
+}
+
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}

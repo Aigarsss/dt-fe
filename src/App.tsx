@@ -1,7 +1,7 @@
 import './App.scss';
-import Cards from './components/cards';
-import Navigation from './components/navigation';
-import AppContextProvider from './context/context';
+import Cards from 'components/main';
+import Navigation from 'components/navigation';
+import AppContextProvider from 'context/context';
 
 const App: React.FC = () => {
     return (
