@@ -40,3 +40,29 @@
     }
 
 }
+
+.darkMode {
+    .number {
+        color: #C2C5C7;
+    }
+
+    .selected {
+        color: #ffffff;
+    }
+
+    .chevron {
+        svg {
+            path {
+                fill: #ffffff;
+            }
+        }
+    }
+
+    .chevronDisabled {
+        svg {
+            path {
+                fill: #5C6369;
+            }
+        }
+    }
+}

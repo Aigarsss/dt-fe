@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { useAppContext } from '../../context/context';
 import Pagination from '../pagination';
 import Search from '../search';
@@ -5,10 +6,10 @@ import Card from './card';
 import styles from './Cards.module.scss';
 
 const Cards = () => {
-    const { data } = useAppContext();
+    const { data, darkMode } = useAppContext();
 
     return (
-        <div className={styles.root}>
+        <div className={classNames(styles.root, { [styles.darkMode]: darkMode })}>
             <div className={styles.searchContainer}>
                 <Search />
             </div>

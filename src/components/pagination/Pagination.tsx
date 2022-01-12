@@ -5,10 +5,10 @@ import { ReactComponent as Left } from './static/left.svg';
 import { ReactComponent as Right } from './static/right.svg';
 
 const Pagination: React.FC = () => {
-    const { setCurrentPage, pageCount, currentPage } = useAppContext();
+    const { setCurrentPage, pageCount, currentPage, darkMode } = useAppContext();
 
     return (
-        <div className={styles.root}>
+        <div className={classNames(styles.root, {[styles.darkMode]: darkMode})}>
             {/* Left arrow */}
             <span
                 className={classNames(styles.chevron, { [styles.chevronDisabled]: currentPage === 1 })}
