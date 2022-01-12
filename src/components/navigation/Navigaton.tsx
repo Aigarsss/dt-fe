@@ -15,10 +15,22 @@ const Navigation: React.FC = () => {
             <a href="/">{darkMode ? <LogoDark /> : <LogoLight />}</a>
             <div className={styles.name}>{selectedName}</div>
             <div className={styles.switchers}>
-                <span className={classNames(styles.switcherItem, { [styles.switcherItemSelected]: !darkMode })} onClick={() => setDarkMode(false)}>
+                <span 
+                    className={classNames(styles.switcherItem, { [styles.switcherItemSelected]: !darkMode })} 
+                    onClick={() => {
+                        setDarkMode(false);
+                        localStorage.setItem("darkMode", 'false');
+                    }}
+                >
                     <Sun />
                 </span>
-                <span className={classNames(styles.switcherItem, { [styles.switcherItemSelected]: darkMode })} onClick={() => setDarkMode(true)}>
+                <span 
+                    className={classNames(styles.switcherItem, { [styles.switcherItemSelected]: darkMode })} 
+                    onClick={() => {
+                        setDarkMode(true);
+                        localStorage.setItem("darkMode", 'true');
+                    }}
+                >
                     <Moon />
                 </span>
                 <Dropdown />

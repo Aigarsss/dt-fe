@@ -41,6 +41,8 @@ export const useApp = (): UseApp => {
     const [pageCount, setPageCount] = useState<Array<number>>([0]); // Set/Get available pages for pagination
     const [darkMode, setDarkMode] = useState(false);
 
+
+    // Get total pages array for pagination
     useEffect(() => {
         const pages = [];
         if (totalItems) {
@@ -51,6 +53,7 @@ export const useApp = (): UseApp => {
         }
     }, [totalItems, pageSize]);
 
+    // Get API data
     async function fetchData(query?: string) {
         if (!query) {
             const { data } = await axios.get(BASE_LINK);
@@ -61,10 +64,11 @@ export const useApp = (): UseApp => {
         }
     }
 
-    // Re-fetch on page size/current page changes
+    // Re-fetch API data on page size/current page changes
     useEffect(() => {
         fetchData(`?_page=${currentPage}&_limit=${pageSize}`);
         setData(data);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [pageSize, currentPage]);
 
     // Get total available items from API
@@ -77,6 +81,7 @@ export const useApp = (): UseApp => {
         getTotal();
     }, []);
 
+    // Get search results from API
     const searchResults = (term?: string) => {
         if (term !== '') {
             fetchData(`?name_like=${term}`);
@@ -84,6 +89,21 @@ export const useApp = (): UseApp => {
             fetchData(`?_page=${currentPage}&_limit=${pageSize}`);
         }
     };
+
+    // Dark mode stuff
+    useEffect(() => {
+        const darkModeSet = "darkMode" in localStorage;
+        const storageData = localStorage.getItem("darkMode");
+        const storageValue = storageData && JSON.parse(storageData);
+
+        // Dark/Light depending on storage
+        if (darkModeSet) {
+            setDarkMode(storageValue);
+        // Light mode
+        } else {
+            setDarkMode(false);
+        }
+    }, [darkMode])
 
     return {
         data,
