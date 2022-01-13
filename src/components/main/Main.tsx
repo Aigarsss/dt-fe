@@ -18,8 +18,7 @@ const Main: React.FC = () => {
                 <Search />
             </div>
             <div className={styles.cardsContainer}>
-                {!data && <div>Loading...</div>}
-                {data &&
+                {data.length > 0 &&
                     data.map((item) => {
                         return <Card key={item.id} item={item} />;
                     })}
